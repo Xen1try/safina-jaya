@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ======================================
+ TEMA TERANG (LIGHT THEME)
+ - Versi Refined/Lebih Lembut -
+ ======================================
+*/
+@layer base {
+    body {
+        /* Mengembalikan background pola titik yang halus */
+        background-color: #f8f9fa; /* Warna fallback jika gambar tidak load */
+        /* Pola titik dibuat lebih samar (0.03) */
+        background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+        background-size: 10px 10px;
+        background-position: -5px -5px;
+        
+        /* Teks dibuat lebih lembut (slate-700) agar tidak terlalu kontras */
+        color: theme('colors.slate.700');
+    }
+
+    /* Warna link diubah menjadi biru yang lebih dalam/profesional (blue-700) */
+    a {
+        @apply text-blue-700 hover:text-blue-800;
+    }
+}
+
+/* ======================================
+ KOMPONEN BARU: KARTU KACA (VERSI TERANG)
+ - Dibuat lebih solid untuk readibility -
+ ======================================
+*/
+@layer components {
+    /* Ini adalah style untuk kartu kaca terang (light), mirip yg kita buat sebelumnya */
+    .card-glass-light {
+        /* Opacity dinaikkan ke 70% agar teks lebih mudah dibaca */
+        background-color: theme('colors.white / 0.7'); /* bg-white/70 */
+        backdrop-filter: blur(12px); /* backdrop-blur-lg */
+        border-radius: theme('borderRadius.2xl'); /* rounded-2xl */
+        border-width: 1px;
+        /* Border dibuat sedikit lebih terlihat */
+        border-color: theme('colors.white / 0.4'); /* border-white/40 */
+        box-shadow: theme('boxShadow.lg'); /* shadow-lg */
+    }
+}
+
+@layer utilities {
+    /* Ini adalah efek "naik" (lift) yang Anda minta.
+      Saya pertahankan, tapi shadow-nya dibuat lebih halus untuk light theme.
+    */
+    .card-lift-hover {
+        transition-property: all;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+    }
+    .card-lift-hover:hover {
+        transform: translateY(-8px);
+        /* Bayangan (shadow) yang lebih halus untuk light theme */
+        box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); 
+    }
+}
